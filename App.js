@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   FlatList,
+  Button,
 } from "react-native";
 
 import GoalItem from './component/GoalItem'
@@ -14,6 +15,7 @@ import GoalInput from './component/GoalInput'
 export default function App() {
   const [enteredText, setEnteredText] = useState("");
   const [goalList, setGoals] = useState([]);
+  const [addMode, setAddMode] = useState(false)
 
   const handleTextUpdate = (text) => {
     setEnteredText(text);
@@ -21,15 +23,19 @@ export default function App() {
 
   const addGoal = () => {
     setGoals((goals) => [...goals, {key: Math.random().toString(), value: enteredText}]);
+    setAddMode(false)
   };
 
   const handleTap = (id) => {
     setGoals(goalList.filter(goal => goal.key !== id))
   } 
 
+  const addGoalHander = () => setAddMode(true)
+
   return (
     <View style={styles.container}>
-      <GoalInput handleTextUpdate={handleTextUpdate} addGoal={addGoal} enteredText={enteredText}/>
+      <Button title="Add goal" onPress={addGoalHander}/>
+      <GoalInput visible={addMode} handleTextUpdate={handleTextUpdate} addGoal={addGoal} enteredText={enteredText}/>
       
       <FlatList
         data={goalList}
