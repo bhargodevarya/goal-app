@@ -8,7 +8,7 @@ export default class GoalItem extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this.props.handleTap}>
+      <TouchableOpacity onPress={this.props.handleTap.bind(this, this.props.id)}>
         <View style={styles.listItem}>
           <Text>{this.props.value}</Text>
         </View>

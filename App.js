@@ -23,13 +23,17 @@ export default function App() {
     setGoals((goals) => [...goals, {key: Math.random().toString(), value: enteredText}]);
   };
 
+  const handleTap = (id) => {
+    setGoals(goalList.filter(goal => goal.key !== id))
+  } 
+
   return (
     <View style={styles.container}>
       <GoalInput handleTextUpdate={handleTextUpdate} addGoal={addGoal} enteredText={enteredText}/>
       
       <FlatList
         data={goalList}
-        renderItem={itemList => <GoalItem value={itemList.item.value} handleTap={() => console.log("tapped")}/>}
+        renderItem={itemList => <GoalItem id={itemList.item.key} value={itemList.item.value} handleTap={handleTap}/>}
       />
     </View>
   );
