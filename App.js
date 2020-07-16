@@ -9,6 +9,8 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
+
+import GoalItem from './component/GoalItem'
 /**
  * ScrollView does eager render
  */
@@ -37,11 +39,7 @@ export default function App() {
       </View>
       <FlatList
         data={goalList}
-        renderItem={itemList => (
-          <View style={styles.listItem}>
-            <Text>{itemList.item.value}</Text>
-          </View>
-        )}
+        renderItem={itemList => <GoalItem value={itemList.item.value}/>}
       />
     </View>
   );
