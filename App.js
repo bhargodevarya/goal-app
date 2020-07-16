@@ -2,15 +2,12 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
-  TextInput,
-  Button,
-  ScrollView,
   FlatList,
 } from "react-native";
 
 import GoalItem from './component/GoalItem'
+import GoalInput from './component/GoalInput'
 /**
  * ScrollView does eager render
  */
@@ -28,15 +25,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={{ paddingTop: "30px" }}>
-        <TextInput
-          placeHolder="Course Goal"
-          style={{ borderColor: "black" }}
-          onChangeText={handleTextUpdate}
-          value={enteredText}
-        ></TextInput>
-        <Button title="Add" onPress={addGoal}></Button>
-      </View>
+      <GoalInput handleTextUpdate={handleTextUpdate} addGoal={addGoal} enteredText={enteredText}/>
+      
       <FlatList
         data={goalList}
         renderItem={itemList => <GoalItem value={itemList.item.value}/>}
@@ -51,13 +41,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-
-  listItem: {
-    padding: 10,
-    borderColor: "black",
-    borderWidth: 1,
-    backgroundColor: "grey",
-    marginVertical: 10,
-  },
+  }
 });
