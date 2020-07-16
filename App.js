@@ -29,7 +29,7 @@ export default function App() {
       
       <FlatList
         data={goalList}
-        renderItem={itemList => <GoalItem value={itemList.item.value}/>}
+        renderItem={itemList => <GoalItem value={itemList.item.value} handleTap={() => console.log("tapped")}/>}
       />
     </View>
   );
